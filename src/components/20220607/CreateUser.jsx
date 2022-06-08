@@ -1,27 +1,23 @@
 import React from 'react';
 
-const CreateUser = ({ nickname, email, onChange, onCreate, nicknameRef, emailRef }) => {
-  
+const CreateUser = ({ addUser, username, email, onChange }) => {
   return (
     <div className='createUser'>
       <input
         type="text"
-        name="nickname"
-        placeholder="이름"
-        value={nickname}
+        placeholder='이름'
+        name='username'
+        value={username}
         onChange={onChange}
-        // ref={nicknameRef}
       />
       <input
-        type="email"
-        name="email"
-        placeholder="이메일"
+        type="text"
+        placeholder='이메일'
+        name='email'
         value={email}
         onChange={onChange}
-        // ref={emailRef}
-        onKeyUp={e => { if (e.key === 'Enter') onCreate() }}
       />
-      <button onClick={onCreate}>등록</button>
+      <button onClick={addUser}>추가</button>
     </div>
   );
 };
