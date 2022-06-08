@@ -6,7 +6,7 @@ const User = ({ user,removeUser,toggleUser }) => {
   return (
     <div className='user'>
       <div>
-        <b className={active ? `${styles.active} ${styles.content}` : `${styles.contnet}`} onClick={() => toggleUser(id)}>
+        <b className={active ? `${styles.active} ${styles.content}` : `${styles.content}`} onClick={() => toggleUser(id)}>
           {username}
         </b>
         &nbsp;

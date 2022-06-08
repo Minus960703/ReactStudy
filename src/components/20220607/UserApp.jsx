@@ -72,7 +72,11 @@ const UserApp = () => {
   },[]);
 
   const toggleUser = id => {
-
+    setUsers(users => users.map(
+      user => user.id === id
+        ? { ...user, active: !user.active }
+        : user
+    ));
   }
 
   return (
