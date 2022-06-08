@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CreateUser = ({ addUser, username, email, onChange }) => {
+const CreateUser = ({ addUser, username, email, onChange, userRef, emailRef }) => {
   return (
     <div className='createUser'>
       <input
@@ -9,6 +9,7 @@ const CreateUser = ({ addUser, username, email, onChange }) => {
         name='username'
         value={username}
         onChange={onChange}
+        ref={userRef}
       />
       <input
         type="text"
@@ -16,6 +17,8 @@ const CreateUser = ({ addUser, username, email, onChange }) => {
         name='email'
         value={email}
         onChange={onChange}
+        ref={emailRef}
+        onKeyUp={e => { if (e.key === 'Enter') {addUser()}}}
       />
       <button onClick={addUser}>추가</button>
     </div>

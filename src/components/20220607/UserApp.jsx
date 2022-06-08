@@ -36,6 +36,8 @@ const UserApp = () => {
 
   const { username, email } = inputs;
 
+  const inputRefs = useRef([]);
+
   const nextId = useRef(users.reduce(
     (prev, current) => {
       return prev.id > current.id ? prev : current;
@@ -53,6 +55,13 @@ const UserApp = () => {
   }, []);
 
   const addUser = useCallback(() => {
+    for (let i = 0; i < inputRefs.current.length; i++) {
+      if (!inputRefs.current[i].value) {
+        alert(`${inputRefs.current[i].name} 값을 입력해주세요.`);
+        inputRefs.current[i].focus();
+        return;
+      }
+    }
     const user = {
       id: nextId.current,
       username,
@@ -64,6 +73,7 @@ const UserApp = () => {
     })
     setUsers(users => users.concat(user))
     nextId.current += 1;
+    inputRefs.current[0].focus();
   },[ username, email ]);
 
   const removeUser = useCallback(id => {
@@ -76,7 +86,7 @@ const UserApp = () => {
         ? { ...user, active: !user.active }
         : user
     ));
-  },[])
+  }, [])
 
   return (
     <div className='area'>
@@ -86,7 +96,14 @@ const UserApp = () => {
         toggleUser={toggleUser}
         removeUser={removeUser}
       />
-      <CreateUser addUser={addUser} username={username} email={email} onChange={onChange}/>
+      <CreateUser
+        addUser={addUser}
+        username={username}
+        email={email}
+        onChange={onChange}
+        userRef={el => inputRefs.current[0] = el}
+        emailRef={el => inputRefs.current[1] = el}
+      />
     </div>
   );
 };
