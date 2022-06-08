@@ -1,4 +1,4 @@
-#root {
+.area {
   display: flex;
   flex-wrap: wrap;
   height: 550px;
@@ -16,8 +16,14 @@
 
 .userList {
   width: 100%;
-  height: calc(100% - 80px - 20px);
+  height: calc(100% - 60px - 40px);
   padding: 0px 20px 10px;
+  overflow: auto;
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
 }
 
 .createUser {

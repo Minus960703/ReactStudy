@@ -67,20 +67,24 @@ const UserApp = () => {
     nextId.current += 1;
   }
 
-  const removeUser = id => {
-
-  }
+  const removeUser = useCallback(id => {
+    setUsers(users => users.filter(user => user.id !== id))
+  },[]);
 
   const toggleUser = id => {
 
   }
 
   return (
-    <>
+    <div className='area'>
       <div className="count">활성화 유저 수 : {count}</div>
-      <UserList users={users}/>
+      <UserList
+        users={users}
+        toggleUser={toggleUser}
+        removeUser={removeUser}
+      />
       <CreateUser addUser={addUser} username={username} email={email} onChange={onChange}/>
-    </>
+    </div>
   );
 };
 
