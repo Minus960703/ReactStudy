@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
 import './UserApp.css';
@@ -42,7 +42,7 @@ const UserApp = () => {
     }
   ).id + 1);
 
-  const count = activeUserCount(users);
+  const count = useMemo(()=>activeUserCount(users),[users]);
 
   const onChange = useCallback(e => {
     const { name, value } = e.target;
@@ -52,32 +52,31 @@ const UserApp = () => {
     }));
   }, []);
 
-  const addUser = () => {
+  const addUser = useCallback(() => {
     const user = {
       id: nextId.current,
       username,
       email
     }
-    console.log(user)
     setInputs({
       username: '',
       email: ''
     })
-    setUsers(users=>users.concat(user))
+    setUsers(users => users.concat(user))
     nextId.current += 1;
-  }
+  },[ username, email ]);
 
   const removeUser = useCallback(id => {
     setUsers(users => users.filter(user => user.id !== id))
   },[]);
 
-  const toggleUser = id => {
+  const toggleUser = useCallback(id => {
     setUsers(users => users.map(
       user => user.id === id
         ? { ...user, active: !user.active }
         : user
     ));
-  }
+  },[])
 
   return (
     <div className='area'>
