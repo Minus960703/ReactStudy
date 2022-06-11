@@ -24,6 +24,7 @@
 .user {
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .createUser {

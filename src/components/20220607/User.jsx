@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ModifyUser from '../ModifyUser';
 import styles from './User.module.css'
 
-const User = ({ user,removeUser,toggleUser }) => {
-  const { username, email, id, active } = user;
+const User = ({ user, removeUser, toggleUser, toggleInputs, updateUser }) => {
+  const { username, email, id, active, update } = user;
+
   return (
-    <div className='user'>
-      <div>
-        <b className={active ? `${styles.active} ${styles.content}` : `${styles.content}`} onClick={() => toggleUser(id)}>
-          {username}
-        </b>
-        &nbsp;
-        ({email})
+    <div>
+      <div className='user'>
+        <div>
+          <b className={active ? `${styles.active} ${styles.content}` : `${styles.content}`} onClick={() => toggleUser(id)}>
+            {username}
+          </b>
+          &nbsp;
+          ({email})
+        </div>
+        <div>
+          <button onClick={() => {removeUser(id)}}>삭제</button>
+          <button onClick={() => { toggleInputs(id) }}>수정</button>
+        </div>
       </div>
-      <button onClick={() => {removeUser(id)}}>삭제</button>
+      <div style={update
+        ? { display: 'block' }
+        : { display: 'none' }
+      }>
+        <ModifyUser user={user} updateUser={updateUser} />
+      </div>
     </div>
   );
 };

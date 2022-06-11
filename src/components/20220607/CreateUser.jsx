@@ -25,4 +25,4 @@ const CreateUser = ({ addUser, username, email, onChange, userRef, emailRef }) =
   );
 };
 
-export default React.memo(CreateUser);
+export default React.memo(CreateUser, (prev,next) => prev.addUser === next.addUser);
