@@ -53,7 +53,7 @@ const reducer = (state, action) => {
     case 'ADD_USER':
       return {
         inputs: defaultState.inputs,
-        users: state.users.concat(action.user)
+        users: state.users.concat(action.user)        
       };
     case 'REMOVE_USER': 
       return {
@@ -77,6 +77,8 @@ const reducer = (state, action) => {
     case 'UPDATE_USER':
       return {
         ...state,
+        users: state.users.map(user => 
+          user.id === action.id ? { ...user, username: action.username, email: action.email, update: !user.update} : user)
       }
     default:
       return state;
@@ -128,6 +130,7 @@ const UserApp = () => {
     })
     nextId.current += 1;
     inputRefs.current[0].focus();
+    reset();
   }, [username, email]);
 
   const removeUser = useCallback(id => {
