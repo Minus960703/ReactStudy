@@ -4,6 +4,7 @@ import CreateUser from './CreateUser';
 import './UserApp.css';
 import useInput from './UseInput';
 import UserRemote from './UserRemote';
+import produce from 'immer';
 
 const activeUserCount = users => {
   return users.filter(user => user.active).length;
@@ -50,22 +51,33 @@ const reducer = (state, action) => {
         }
       }
     case 'ADD_USER':
-      return {
-        inputs: defaultState.inputs,
-        users: state.users.concat(action.user)
-      };
+      // return {
+      //   inputs: defaultState.inputs,
+      //   users: state.users.concat(action.user)
+      // };
+      return produce(state, draft => {
+        draft.users.push(action.user);
+      })
     case 'REMOVE_USER': 
-      return {
-        ...state,
-        users: state.users.filter(user => user.id !== action.id)
-      }
+      // return {
+      //   ...state,
+      //   users: state.users.filter(user => user.id !== action.id)
+      // }
+      return produce(state, draft => {
+        const index = draft.users.find(user => user.id === action.id);
+        draft.users.splice(index, 1);
+      })
     case 'TOGGLE_USER': 
-      return {
-        ...state,
-        users: state.users.map(user =>
-          user.id === action.id ? { ...user, active: !user.active } : user
-        )
-      }
+      // return {
+      //   ...state,
+      //   users: state.users.map(user =>
+      //     user.id === action.id ? { ...user, active: !user.active } : user
+      //   )
+      // }
+      return produce(state, draft => {
+        const user = draft.users.find(user => user.id === action.id);
+        user.active = !user.active;
+      })
     case 'TOGGLE_INPUTS':
       return {
         ...state,
