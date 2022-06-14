@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import ModifyUser from '../ModifyUser';
+import ModifyUser from './ModifyUser';
+import UserRemote from './UserRemote';
 import styles from './User.module.css'
 
 const User = ({ user, removeUser, toggleUser, toggleInputs, updateUser }) => {
@@ -16,7 +17,7 @@ const User = ({ user, removeUser, toggleUser, toggleInputs, updateUser }) => {
           ({email})
         </div>
         <div>
-          <button onClick={() => {removeUser(id)}}>삭제</button>
+          <button onClick={() => { removeUser(id) }}>삭제</button>
           <button onClick={() => { toggleInputs(id) }}>수정</button>
         </div>
       </div>
@@ -25,6 +26,7 @@ const User = ({ user, removeUser, toggleUser, toggleInputs, updateUser }) => {
         : { display: 'none' }
       }>
         <ModifyUser user={user} updateUser={updateUser} />
+        {/* <UserRemote user={user} updateUser={updateUser} /> */}
       </div>
     </div>
   );

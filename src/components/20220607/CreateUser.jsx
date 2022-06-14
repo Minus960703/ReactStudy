@@ -8,6 +8,7 @@ const CreateUser = ({ addUser, username, email, onChange, userRef, emailRef }) =
         placeholder='이름'
         name='username'
         value={username}
+        // defaultValue={username ? username : ''}
         onChange={onChange}
         ref={userRef}
       />

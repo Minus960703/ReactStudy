@@ -1,5 +1,5 @@
 import React from 'react';
-import useInput from './20220607/\bUseInput';
+import useInput from './UseInput';
 
 const ModifyUser = ({ user, updateUser }) => {
   const { username, email, id } = user;

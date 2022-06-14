@@ -2,7 +2,8 @@ import React, { useCallback, useMemo, useReducer, useRef } from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
 import './UserApp.css';
-import useInput from './\bUseInput';
+import useInput from './UseInput';
+import UserRemote from './UserRemote';
 
 //reducer 구현 후, 상태관리 + 유저 별 수정, 일요일까지 
 
@@ -53,7 +54,7 @@ const reducer = (state, action) => {
     case 'ADD_USER':
       return {
         inputs: defaultState.inputs,
-        users: state.users.concat(action.user)        
+        users: state.users.concat(action.user)
       };
     case 'REMOVE_USER': 
       return {
@@ -91,7 +92,6 @@ const UserApp = () => {
   const [state, dispatch] = useReducer(reducer, defaultState);
 
   const { users } = state;
-  // const { username, email } = state.inputs;
   
   const inputRefs = useRef([]);
 
@@ -102,15 +102,6 @@ const UserApp = () => {
   ).id + 1);
 
   const count = useMemo(() => activeUserCount(users), [users]);
-
-  // const onChange = useCallback(e => {
-  //   const { name, value } = e.target;
-  //   dispatch({
-  //     type: 'CHANGE_INPUT',
-  //     name,
-  //     value
-  //   })
-  // }, []);
 
   const addUser = useCallback(() => {
     for (let i = 0; i < inputRefs.current.length; i++) {
@@ -182,6 +173,12 @@ const UserApp = () => {
         userRef={el => inputRefs.current[0] = el}
         emailRef={el => inputRefs.current[1] = el}
       />
+      {/* <UserRemote
+        addUser={addUser}
+        user={{ username: username, email: email }}
+        // username={username}
+        // email={email}
+      /> */}
     </div>
   );
 };
