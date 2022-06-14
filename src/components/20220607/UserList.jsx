@@ -1,19 +1,13 @@
 import React from 'react';
 import User from './User';
 
-const UserList = ({ users, toggleInputs, updateUser, onChange }) => {
+const UserList = ({ users }) => {
 	return (
 		<div className='userList'>
 			{
 				users.map(
-					user =>
-						<User
-							key={user.id}
-							user={user}
-							toggleInputs={toggleInputs}
-							updateUser={updateUser}
-						/>
-				)
+						user => <User key={user.id} user={user} />
+				)	
 			}
 		</div>
 	);

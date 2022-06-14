@@ -4,7 +4,7 @@ import UserRemote from './UserRemote';
 import styles from './User.module.css'
 import { UserDisPatch } from './UserApp';
 
-const User = ({ user, toggleInputs, updateUser }) => {
+const User = ({ user }) => {
   const { username, email, id, active, update } = user;
   const dispatch = useContext(UserDisPatch);
 
@@ -28,14 +28,18 @@ const User = ({ user, toggleInputs, updateUser }) => {
             id
           })}
           >삭제</button>
-          <button onClick={() => { toggleInputs(id) }}>수정</button>
+          <button onClick={() => dispatch({
+            type: 'TOGGLE_INPUTS',
+            id
+          })}
+          >수정</button>
         </div>
       </div>
       <div style={update
         ? { display: 'block' }
         : { display: 'none' }
       }>
-        <ModifyUser user={user} updateUser={updateUser} />
+        <ModifyUser user={user}/>
         {/* <UserRemote user={user} updateUser={updateUser} /> */}
       </div>
     </div>
