@@ -1,11 +1,9 @@
-import React, { useCallback, useMemo, useReducer, useRef } from 'react';
+import React, { createContext, useCallback, useMemo, useReducer, useRef } from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
 import './UserApp.css';
 import useInput from './UseInput';
 import UserRemote from './UserRemote';
-
-//reducer 구현 후, 상태관리 + 유저 별 수정, 일요일까지 
 
 const activeUserCount = users => {
   return users.filter(user => user.active).length;
@@ -86,6 +84,8 @@ const reducer = (state, action) => {
   }
 }
 
+export const UserDisPatch = createContext(null);
+
 const UserApp = () => {
   const [{ username, email }, onChange, reset] = useInput(defaultState.inputs);
 
@@ -124,20 +124,6 @@ const UserApp = () => {
     reset();
   }, [username, email]);
 
-  const removeUser = useCallback(id => {
-    dispatch({
-      type: 'REMOVE_USER',
-      id
-    });
-  },[]);
-
-  const toggleUser = useCallback(id => {
-    dispatch({
-      type: 'TOGGLE_USER',
-      id
-    })
-  }, []);
-
   const toggleInputs = useCallback(id => {
     dispatch({
       type: 'TOGGLE_INPUTS',
@@ -155,31 +141,31 @@ const UserApp = () => {
   }, []);
 
   return (
-    <div className='area'>
-      <div className="count">활성화 유저 수 : {count}</div>
-      <UserList
-        users={users}
-        toggleUser={toggleUser}
-        removeUser={removeUser}
-        toggleInputs={toggleInputs}
-        updateUser={updateUser}
-        onChange={onChange}
-      />
-      <CreateUser
-        addUser={addUser}
-        username={username}
-        email={email}
-        onChange={onChange}
-        userRef={el => inputRefs.current[0] = el}
-        emailRef={el => inputRefs.current[1] = el}
-      />
-      {/* <UserRemote
-        addUser={addUser}
-        user={{ username: username, email: email }}
-        // username={username}
-        // email={email}
-      /> */}
-    </div>
+    <UserDisPatch.Provider value={dispatch}>
+      <div className='area'>
+        <div className="count">활성화 유저 수 : {count}</div>
+        <UserList
+          users={users}
+          toggleInputs={toggleInputs}
+          updateUser={updateUser}
+          onChange={onChange}
+        />
+        <CreateUser
+          addUser={addUser}
+          username={username}
+          email={email}
+          onChange={onChange}
+          userRef={el => inputRefs.current[0] = el}
+          emailRef={el => inputRefs.current[1] = el}
+        />
+        {/* <UserRemote
+          addUser={addUser}
+          user={{ username: username, email: email }}
+          // username={username}
+          // email={email}
+        /> */}
+      </div>
+    </UserDisPatch.Provider>
   );
 };
 

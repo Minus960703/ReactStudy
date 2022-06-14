@@ -1,7 +1,7 @@
 import React from 'react';
 import User from './User';
 
-const UserList = ({ users, removeUser, toggleUser, toggleInputs, updateUser, onChange }) => {
+const UserList = ({ users, toggleInputs, updateUser, onChange }) => {
 	return (
 		<div className='userList'>
 			{
@@ -10,8 +10,6 @@ const UserList = ({ users, removeUser, toggleUser, toggleInputs, updateUser, onC
 						<User
 							key={user.id}
 							user={user}
-							toggleUser={toggleUser}
-							removeUser={removeUser}
 							toggleInputs={toggleInputs}
 							updateUser={updateUser}
 						/>
