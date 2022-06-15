@@ -45,7 +45,7 @@
 
 //   /** DB 존재 시 , autoIncrease 사용 예정이라 설정 필요없을 예정.. ( nextId 설정 부분 )*/
 // 	//console.log(Math.max(...users.map(user => user.id+1),0)) //값을 참조하는거라 .. 메모리적 낭비가 존재하는지...
-	
+
 // 	const nextId = useRef(users.reduce(
 //     (prev, current) => { return prev.id > current.id ? prev : current}
 //   ).id+1);
@@ -73,7 +73,7 @@
 //     // inputRef.current[0].focus();
 //     nextId.current += 1;
 //   },[ nickname, email ]);
-  
+
 //   const onRemove = useCallback(id => {
 //     setUsers(users => users.filter(user => user.id !== id));
 //   },[]);
@@ -86,7 +86,7 @@
 //       )
 //     )
 //   }, [])
-  
+
 //   const count = useMemo(() => activeUsersCount(users), [users]);
 
 //   return (
@@ -107,17 +107,19 @@
 
 // export default App;
 
-import React from 'react';
-import UserApp from './components/20220607/UserApp';
-import ContextSample from './components/20220614/ContextSample';
+import React from "react";
+import UserApp from "./components/20220607/UserApp";
+import ContextSample from "./components/20220614/ContextSample";
+import TodoApp from "./components/20220615/TodoApp";
 
 const App = () => {
-  return (
-    <div>
-      <UserApp />
-      {/* <ContextSample /> */}
-    </div>
-  );
+	return (
+		<div>
+			{/* <UserApp /> */}
+			<TodoApp />
+			{/* <ContextSample /> */}
+		</div>
+	);
 };
 
 export default App;

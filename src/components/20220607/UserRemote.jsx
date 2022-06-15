@@ -13,7 +13,8 @@ const UserRemote = ({ addUser, user, updateUser }) => {
   if (updateUser) {
     const { modify_name, modify_email } = form;
   }
-
+  const ss = ss
+  
   // console.log(modify_name)
   
   // if (updateuser) {
