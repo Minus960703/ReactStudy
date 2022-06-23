@@ -4,16 +4,18 @@ import ContextSample from "./components/20220614/ContextSample";
 import TodoApp from "./components/20220615/TodoApp";
 import Users from "./components/20220616/Users";
 import { UsersProvider } from "./components/20220616/UserContext";
+import "./components/Redux/exercise";
+import ReduxApp from "./components/Redux/ReduxApp";
 
 const App = () => {
 	return (
 		<div>
 			{/* <UserApp /> */}
 			{/* <TodoApp /> */}
-			<UsersProvider>
+			{/* <UsersProvider>
 				<Users />
-			</UsersProvider>
-
+			</UsersProvider> */}
+			<ReduxApp />
 			{/* <ContextSample /> */}
 		</div>
 	);
