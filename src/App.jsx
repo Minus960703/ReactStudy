@@ -6,6 +6,7 @@ import Users from "./components/20220616/Users";
 import { UsersProvider } from "./components/20220616/UserContext";
 import "./components/Redux/exercise";
 import ReduxApp from "./components/Redux/ReduxApp";
+import ReduxMiddleApp from "./components/ReduxMiddle/ReduxMiddleApp";
 
 const App = () => {
 	return (
@@ -15,7 +16,8 @@ const App = () => {
 			{/* <UsersProvider>
 				<Users />
 			</UsersProvider> */}
-			<ReduxApp />
+			{/* <ReduxApp /> */}
+			<ReduxMiddleApp />
 			{/* <ContextSample /> */}
 		</div>
 	);
