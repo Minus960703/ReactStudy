@@ -21,7 +21,7 @@ const defaultValue = {
 	post: reducerUtils.default(),
 };
 
-const getPostsReducer = handleAsyncActions(GET_POSTS, "posts", true);
+const getPostsReducer = handleAsyncActions(GET_POSTS, "posts");
 const getPostReducer = handleAsyncActions(GET_POST, "post");
 
 const posts = (state = defaultValue, action) => {

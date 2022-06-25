@@ -29,7 +29,8 @@ export const handleAsyncActions = (type, key) => {
 			case type:
 				return {
 					...state,
-					[key]: reducerUtils.loading(keepData ? state[key].data : null),
+					// [key]: reducerUtils.loading(keepData ? state[key].data : null),
+					[key]: reducerUtils.loading(),
 				};
 			case SUCCESS:
 				return {
